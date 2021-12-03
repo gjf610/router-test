@@ -21,7 +21,10 @@ const routeTable = {
 function route(container) {
     let number = window.location.pathname
     console.log(number)
-    number = number || 1
+    if (number === '/') {
+        number = '/1'
+    }
+
 
     let div = routeTable[number.toString()]
 
