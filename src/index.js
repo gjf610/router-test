@@ -1,24 +1,23 @@
-let number = window.location.hash.substr(1)
+function route() {
+    let number = window.location.hash.substr(1)
+    let app = document.querySelector('#app')
+    number = number || 1
+    let div = document.querySelector(`#div${number}`)
+    if (!div) div = document.querySelector('#div404')
+    div.style.display = 'block'
+    if (app.children.length > 0) {
+        app.children[0].style.display = 'none'
+        document.body.appendChild(app.children[0])
+    }
 
-let div = document.querySelector(`#div${number}`)
+    app.appendChild(div)
+}
 
-let app = document.querySelector('#app')
+route()
 
-div.style.display = 'block'
-app.appendChild(div)
+
 
 window.addEventListener('hashchange', () => {
     console.log('hash 变了')
-    const number2 = window.location.hash.substr(1)
-
-    const div2 = document.querySelector(`#div${number2}`)
-
-    const app2 = document.querySelector('#app')
-
-
-
-    div2.style.display = 'block'
-    app2.children[0].style.display = 'none'
-    document.body.appendChild(app2.children[0])
-    app2.appendChild(div2)
+    route()
 })
